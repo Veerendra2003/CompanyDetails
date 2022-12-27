@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company</title>
+    <script>
+      let company = {
+        name: "Apple",
+        foundationYear: 1976,
+        productsList: [
+          {
+            name: "IPhone",
+            year: 2007,
+          },
+          {
+            name: "IPad",
+            year: 2010,
+          },
+        ],
+
+        foundBy: ["Steve Jobs", "Steve Wozniak"],
+        ceo: "Steve Jobs",
+
+        createNewProduct: function (product) {
+          company.productsList.push(product);
+        },
+
+        toString: function () {
+          let str = "";
+          for (let p of company.productsList)
+            str = str + p.name + "-" + p.year + ",";
+
+          return `<strong>name:</strong>${company.name}<br><strong>Foundation year:</strong>${company.foundationYear}<br><strong>founders:</strong>${company.foundBy}<br><strong>CEO:</strong>${company.ceo}<br><strong>Products:</strong>${str}`;
+        },
+
+        resign: function () {
+          var prevCeo = company.ceo;
+          company.ceo = null;
+          return prevCeo;
+        },
+        hireCeo: function (name) {
+          company.ceo = name;
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <script>
+      document.write("<h3>Company Details</h3>");
+      document.write(company + "<br>");
+
+      document.write(`<br>CEO:${company.resign()} resigned<br>`);
+      document.write("<h3>After CEO's Resignation</h3>");
+
+      document.write(company + "<br>");
+
+      document.write(company.hireCeo("Tim Cock"));
+      document.write("<h3>After Hiring New CEO</h3>");
+      document.write(company + "<br>");
+
+      company.createNewProduct({
+        name: "Ihome",
+        year: 2020,
+      });
+      document.write("<h3>After Adding New Product</h3>");
+      document.write(company);
+    </script>
+  </body>
+</html>
